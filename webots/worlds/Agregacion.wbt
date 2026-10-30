@@ -1,0 +1,708 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Copper.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/GlossyPaint.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "../protos/Zumo_Robot.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.25419264032334093 0.025281592121782263 0.9668231186236893 3.002174622312888
+  position 4.096640319282202 -1.3417768868996789 2.3940816418273188
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation -0.00302408 -0.215488 -1.38778e-17
+  floorSize 4 4
+  floorAppearance Parquetry {
+    type "light strip"
+  }
+}
+Robot {
+  translation -1.011 4.0441 0.000625073
+  rotation -0.00017727627815824638 0.0002472297705989689 -0.9999999537252798 1.9200450006847378
+  children [
+    DEF IR_ds Solid {
+      translation 0 0.04 0.009
+      children [
+        DEF IR_0_ds DistanceSensor {
+          translation 0.03 0 0
+          rotation 0 -1 0 -5.307179586466759e-06
+          name "right_ds"
+          lookupTable [
+            0 0 0
+            0.2 2000 0
+          ]
+        }
+        DEF IR_1 DistanceSensor {
+          translation 0.012 0 0
+          rotation 0 1 0 1.5708
+          name "IR_1"
+          type "infra-red"
+        }
+        DEF IR_2 DistanceSensor {
+          rotation 0 1 0 1.5708
+          name "IR_2"
+          type "infra-red"
+        }
+        DEF IR_3_ds DistanceSensor {
+          rotation 0.5773509358554485 0.5773509358554485 0.5773489358556708 2.0944
+          name "front_ds"
+          lookupTable [
+            0 0 0
+            0.2 2000 0
+          ]
+        }
+        DEF IR_5_ds DistanceSensor {
+          translation -0.03 0 2.20392e-07
+          rotation 0 1 0 -3.1415853071795863
+          name "left_ds"
+          lookupTable [
+            0 0 0
+            0.2 2000 0
+          ]
+        }
+        DEF IR_4 DistanceSensor {
+          translation -0.012 0 1.8366e-07
+          rotation 0 1 0 1.5708
+          name "IR_4"
+          type "infra-red"
+        }
+        Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.066 0.005 0.003
+          }
+        }
+      ]
+      name "distance sensor"
+    }
+    Group {
+      children [
+        DEF CUERPOROBOT Transform {
+          translation 0 0 0.015
+          children [
+            Shape {
+              appearance GlossyPaint {
+                baseColor 0.698039 0.643137 0.0470588
+              }
+              geometry Box {
+                size 0.06 0.07 0.02
+              }
+            }
+          ]
+        }
+        DEF FRONT_RIGHT_WHEEL HingeJoint {
+          jointParameters HingeJointParameters {
+            position -961.6126137665999
+            anchor 0.039 0.018 0.02
+          }
+          device [
+            RotationalMotor {
+              name "MOTOR_FRONT_RIGHT"
+            }
+          ]
+          endPoint Solid {
+            translation 0.03899999999827967 0.01800107719641811 0.02000367926127271
+            rotation 0.14051054438238914 -0.9800253716783945 0.1407375493036212 4.690599618114686
+            children [
+              DEF RUEDA Shape {
+                appearance Copper {
+                }
+                geometry Cylinder {
+                  height 0.019
+                  radius 0.02
+                }
+              }
+            ]
+            boundingObject USE RUEDA
+            physics Physics {
+            }
+          }
+        }
+        DEF FRONT_LEFT_WHEEL HingeJoint {
+          jointParameters HingeJointParameters {
+            position -1736.5971025866022
+            anchor -0.039 0.018 0.02
+          }
+          device [
+            RotationalMotor {
+              name "MOTOR_FRONT_LEFT"
+            }
+          ]
+          endPoint Solid {
+            translation -0.038999999836121346 0.018002569128159188 0.019996974942311386
+            rotation -0.6844240106912893 0.25124568155054633 -0.6844263153119198 2.6492927946853646
+            children [
+              USE RUEDA
+            ]
+            name "solid(1)"
+            boundingObject USE RUEDA
+            physics Physics {
+            }
+          }
+        }
+        DEF BACK_RIGHT_WHEEL HingeJoint {
+          jointParameters HingeJointParameters {
+            position -248.37870155097647
+            anchor 0.039 -0.03 0.02
+          }
+          device [
+            RotationalMotor {
+              name "MOTOR_BACK_RIGHT"
+            }
+          ]
+          endPoint Solid {
+            translation 0.0390000000692877 -0.03000043487038037 0.01999776806725981
+            rotation 0.7054585020254577 0.06824674745956032 0.7054577828482639 3.0053103414726863
+            children [
+              USE RUEDA
+            ]
+            name "solid(2)"
+            boundingObject USE RUEDA
+            physics Physics {
+            }
+          }
+        }
+        DEF BACK_LEFT_WHEEL HingeJoint {
+          jointParameters HingeJointParameters {
+            position -1736.6601561609589
+            anchor -0.039 -0.03 0.02
+          }
+          device [
+            RotationalMotor {
+              name "MOTOR_BACK_LEFT"
+            }
+          ]
+          endPoint Solid {
+            translation -0.038999999941102544 -0.029998560469466987 0.01999807072448547
+            rotation -0.6884218132606582 0.22835853916367566 -0.6884241313448703 2.692576435637204
+            children [
+              USE RUEDA
+            ]
+            name "solid(3)"
+            boundingObject USE RUEDA
+            physics Physics {
+            }
+          }
+        }
+      ]
+    }
+  ]
+  boundingObject USE CUERPOROBOT
+  physics Physics {
+    mass 0.21
+  }
+  controller "Agregacion"
+}
+DEF ENTORNO Group {
+  children [
+    Transform {
+      translation 0.11 -0.01 -0.25
+      children [
+        Solid {
+          translation 0.663486 -0.618077 0.1
+          rotation 0 0 1 2.3562
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(1)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation 0.062449 -0.936277 0.1
+          rotation 0 0 -1 -1.8326053071795858
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(17)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation -1.16217 0.231815 0.1
+          rotation 0 0 1 0.523598
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(2)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation -0.51 0 0.1
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(3)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation 0.37 0.63 0.1
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(19)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation 1.15 0.29 0.1
+          rotation 0 0 1 -0.523595307179586
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(20)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation 0.979986 0.956462 0.1
+          rotation 0 0 1 -2.3561953071795863
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(21)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation -1.20608 -0.548341 0.1
+          rotation 0 0 -1 -0.523595307179586
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(4)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation -0.54213 -0.69787 0.1
+          rotation 0 0 1 0.785398
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(5)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation 0.09 -0.61 0.1
+          rotation 0 0 1 2.0944
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(6)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation 0.58 -0.04 0.1
+          rotation 0 0 1 -2.6179953071795863
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(7)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation -0.71908 0.770671 0.1
+          rotation 0 0 -1 0.785398
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(8)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation 0 0.49 0.1
+          rotation 0 0 1 -1.8325953071795862
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(18)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation 0.71562 0.521295 0.1
+          rotation 0 0 1 -2.6179953071795863
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.4 0.2
+              }
+            }
+          ]
+          name "Wall(9)"
+          boundingObject Box {
+            size 0.04 0.4 0.2
+          }
+        }
+        Solid {
+          translation 0.281748 1.14769 0.1
+          rotation 0 0 1 1.8326
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.8 0.2
+              }
+            }
+          ]
+          name "Wall(10)"
+          boundingObject Box {
+            size 0.04 0.8 0.2
+          }
+        }
+        Solid {
+          translation -0.653338 1.31439 0.1
+          rotation 0 0 -1 -1.0472053071795866
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.8 0.2
+              }
+            }
+          ]
+          name "Wall(11)"
+          boundingObject Box {
+            size 0.04 0.8 0.2
+          }
+        }
+        Solid {
+          translation -1.24223 0.834387 0.1
+          rotation 0 0 1 -1.0471853071795865
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.8 0.2
+              }
+            }
+          ]
+          name "Wall(12)"
+          boundingObject Box {
+            size 0.04 0.8 0.2
+          }
+        }
+        Solid {
+          translation -1.62723 -0.0229746 0.1
+          rotation 0 0 1 -3.1415853071795863
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.8 0.2
+              }
+            }
+          ]
+          name "Wall(13)"
+          boundingObject Box {
+            size 0.04 0.8 0.2
+          }
+        }
+        Solid {
+          translation -0.875735 -1.09179 0.1
+          rotation 0 0 1 1.309
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.8 0.2
+              }
+            }
+          ]
+          name "Wall(14)"
+          boundingObject Box {
+            size 0.04 0.8 0.2
+          }
+        }
+        Solid {
+          translation 0.140764 -1.25447 0.1
+          rotation 0 0 1 -1.047195307179586
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.8 0.2
+              }
+            }
+          ]
+          name "Wall(15)"
+          boundingObject Box {
+            size 0.04 0.8 0.2
+          }
+        }
+        Solid {
+          translation 1.0773 -0.56447 0.1
+          rotation 0 0 1 2.24093e-06
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 0.513726 0.286275 0.0980392
+                }
+              }
+              geometry Box {
+                size 0.04 0.8 0.2
+              }
+            }
+          ]
+          name "Wall(16)"
+          boundingObject Box {
+            size 0.04 0.8 0.2
+          }
+        }
+      ]
+    }
+  ]
+}
+Group {
+}
+DEF ROBOTS Group {
+  children [
+    Transform {
+      translation -0.62 0.77 0.04
+      children [
+        Zumo_Robot {
+          translation 0.642569 -1.79918 -0.03
+          rotation 0 0 1 1.0472
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation 0.163386 -2.15934 -0.03
+          rotation 0 0 -1 -5.307179586466759e-06
+          name "Pololo(1)"
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation 0.513383 -1.25934 -0.03
+          rotation 0 0 1 -3.1415853071795863
+          name "Pololo(2)"
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation 0.613381 -0.79934 -0.03
+          rotation 0 0 1 -3.1415853071795863
+          name "Pololo(10)"
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation 0.813383 -1.38934 -0.03
+          rotation 0 0 -1 -1.5708053071795867
+          name "Pololo(3)"
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation 0.0941607 -1.47517 -0.03
+          rotation 0 0 1 -1.8325853071795866
+          name "Pololo(4)"
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation -0.103973 -0.604969 -0.03
+          rotation 0 0 1 -2.356185307179586
+          name "Pololo(5)"
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation -0.728225 -2.12255 -0.04
+          rotation 0 0 -1 1.04719
+          name "Pololo(6)"
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation 0.151124 -2.65504 -0.01
+          rotation 0 0 -1 -5.307179586466759e-06
+          name "Pololo(7)"
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation -0.742687 -1.58557 -0.02
+          rotation 0 0 1 -1.3089953071795861
+          name "Pololo(8)"
+          controller "Agregacion"
+        }
+        Zumo_Robot {
+          translation -0.633769 -0.962011 -0.02
+          rotation 0 0 1 -1.8325953071795862
+          name "Pololo(9)"
+          controller "Agregacion"
+        }
+      ]
+    }
+  ]
+}

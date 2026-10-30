@@ -1,0 +1,192 @@
+#VRML_SIM R2023a utf8
+PROTO Zumo_Robot [
+  field SFVec3f    translation  0 0 0
+  field SFRotation rotation     0 0 1 0
+  field SFFloat    bodyMass     0.21
+  field SFString   name         "Pololo"
+  field SFString   controller   "void"
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    children [
+    DEF IR_ds Solid {
+      translation 0 0.04 0.009
+      children [
+        DEF IR_0_ds DistanceSensor {
+          translation 0.03 0 0
+          rotation 0 -1 0 -5.307179586466759e-06
+          scale 3 3 3
+          name "right_ds"
+          lookupTable [
+            0 0 0
+            0.350 350 0
+          ]
+        }
+        DEF IR_1 DistanceSensor {
+          translation 0.012 0 0
+          rotation 0 1 0 1.5708
+          name "IR_1"
+          type "infra-red"
+        }
+        DEF IR_2 DistanceSensor {
+          rotation 0 1 0 1.5708
+          name "IR_2"
+          type "infra-red"
+        }
+        DEF IR_3_ds DistanceSensor {
+          rotation 0.5773509358554485 0.5773509358554485 0.5773489358556708 2.0944
+          scale 3 3 3
+          name "front_ds"
+          lookupTable [
+            0 0 0
+            0.35 350 0
+          ]
+        }
+        DEF IR_5_ds DistanceSensor {
+          translation -0.03 0 2.20392e-07
+          rotation 0 1 0 -3.1415853071795863
+          scale 3 3 3
+          name "left_ds"
+          lookupTable [
+            0 0 0
+            0.35 350 0
+          ]
+        }
+        DEF IR_3 DistanceSensor {
+          translation -0.012 0 1.8366e-07
+          rotation 0 1 0 1.5708
+          name "IR_3"
+          type "infra-red"
+        }
+        Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.066 0.005 0.003
+          }
+        }
+      ]
+      name "distance sensor"
+    }
+      Group {
+        children [
+          DEF CUERPOROBOT Transform {
+            translation 0 0 0.015
+            children [
+              Shape {
+                appearance GlossyPaint {
+                  baseColor 0.698039 0.643137 0.0470588
+                }
+                geometry Box {
+                  size 0.06 0.07 0.02
+                }
+              }
+            ]
+          }
+          DEF FRONT_RIGHT_WHEEL HingeJoint {
+            jointParameters HingeJointParameters {
+              position -889.9351152776353
+              anchor 0.039 0.018 0.02
+            }
+            device [
+              RotationalMotor {
+                name "MOTOR_FRONT_RIGHT"
+              }
+            ]
+            endPoint Solid {
+              translation 0.03899999999827967 0.01799708480084792 0.019997510235043252
+              rotation 0.6716548617103054 0.3103235109293863 0.6727399685653956 2.54070434841646
+              children [
+                DEF RUEDA Shape {
+                  appearance Copper {
+                  }
+                  geometry Cylinder {
+                    height 0.019
+                    radius 0.02
+                  }
+                }
+              ]
+              boundingObject USE RUEDA
+              physics Physics {
+              }
+            }
+          }
+          DEF FRONT_LEFT_WHEEL HingeJoint {
+            jointParameters HingeJointParameters {
+              position -1664.9196037985819
+              anchor -0.039 0.018 0.02
+            }
+            device [
+              RotationalMotor {
+                name "MOTOR_FRONT_LEFT"
+              }
+            ]
+            endPoint Solid {
+              translation -0.038999999836121346 0.01799950540698695 0.02000393786379516
+              rotation -0.062090858151681215 -0.9961372519410271 -0.06209106722682629 4.708515395098351
+              children [
+                USE RUEDA
+              ]
+              name "solid(1)"
+              boundingObject USE RUEDA
+              physics Physics {
+              }
+            }
+          }
+          DEF BACK_RIGHT_WHEEL HingeJoint {
+            jointParameters HingeJointParameters {
+              position -176.7012025004481
+              anchor 0.039 -0.03 0.02
+            }
+            device [
+              RotationalMotor {
+                name "MOTOR_BACK_RIGHT"
+              }
+            ]
+            endPoint Solid {
+              translation 0.0390000000692877 -0.02999841450886185 0.020001629985845114
+              rotation -0.3523477838634612 0.867007688281668 -0.3523474246634786 1.7130208212517475
+              children [
+                USE RUEDA
+              ]
+              name "solid(2)"
+              boundingObject USE RUEDA
+              physics Physics {
+              }
+            }
+          }
+          DEF BACK_LEFT_WHEEL HingeJoint {
+            jointParameters HingeJointParameters {
+              position -1664.9826570896498
+              anchor -0.039 -0.03 0.02
+            }
+            device [
+              RotationalMotor {
+                name "MOTOR_BACK_LEFT"
+              }
+            ]
+            endPoint Solid {
+              translation -0.038999999941102544 -0.03000014890991159 0.020002402535744722
+              rotation -0.03070523435588031 -0.9990567405392563 -0.030705337748144542 4.711441908677972
+              children [
+                USE RUEDA
+              ]
+              name "solid(3)"
+              boundingObject USE RUEDA
+              physics Physics {
+              }
+            }
+          }
+        ]
+      }
+    ]
+    boundingObject USE CUERPOROBOT
+    physics Physics {
+      mass IS bodyMass
+    }
+    controller IS controller
+    name IS name
+  }
+}

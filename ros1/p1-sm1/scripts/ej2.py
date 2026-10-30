@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+# -- coding: utf-8 --
+
+import rospy 
+from geometry_msgs.msg import Twist, Vector3
+import time
+
+
+
+def coordinate_movement():
+
+    # Topics
+    pub_tb1 = rospy.Publisher('/robot1/mobile_base/commands/velocity', Twist, queue_size=10)
+    pub_tb2 = rospy.Publisher('/robot2/mobile_base/commands/velocity', Twist, queue_size=10)
+    pub_tb3 = rospy.Publisher('/robot3/mobile_base/commands/velocity', Twist, queue_size=10)
+    pub_tb4 = rospy.Publisher('/robot4/mobile_base/commands/velocity', Twist, queue_size=10)
+    pubs = [pub_tb1,pub_tb2,pub_tb3,pub_tb4]
+
+    # Creacion nodo
+    rospy.init_node("ej2_coordinate_movement", anonymous=True)
+
+    # Velocidades y variables iniciales
+    x_value=  0.5
+    wz_value= 0
+    robot_index=1
+
+    # Contador de tiempo para cambio de robot
+    actual_time = time.time()
+    prev_time = actual_time
+
+    while True: 
+
+        # Se publica en el robot correspondiente la velocidad
+        tb_message = Twist(Vector3(x_value,0,0),Vector3(0,0,wz_value))
+        pubs[robot_index-1].publish(tb_message)
+
+        # Se actualiza el contador
+        actual_time = time.time()
+
+        # Se calcula el contador de tiempo actual
+        t = actual_time - prev_time
+
+        # Se imprime informacion del contador
+        rospy.loginfo("Time {}".format(t))
+
+        # Linea recta
+        if t < 4: 
+            x_value=  0.5
+            wz_value= 0
+        # Giro
+        elif t < 7: 
+            x_value=  0
+            wz_value= 1
+        # Linea recta
+        elif t < 10:
+            x_value=  0.5
+            wz_value= 0
+        
+        elif t < 12:
+            prev_time = actual_time
+            if robot_index < 4:  
+                robot_index += 1
+            else: 
+                robot_index = 1
+          
+    rospy.spin()
+
+if __name__ == '__main__': 
+
+    # Se ejecuta movimiento coordinado
+    coordinate_movement()

@@ -1,0 +1,4 @@
+<launch>
+        <node pkg="sm1" type="p2_bumper_2.py" name="tb1" args="robot1"/>
+        <node pkg="sm1" type="p2_bumper_2.py" name="tb2" args="robot2"/>
+</launch>

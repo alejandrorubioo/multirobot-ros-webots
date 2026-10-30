@@ -1,0 +1,15 @@
+<launch>
+<param name="/use_sim_time" value="true" />
+<!-- start world -->
+<node name="gazebo" pkg="gazebo_ros" type="gazebo"
+args="$(find sm3)/worlds/sala.world" respawn="false" output="screen" />
+
+<!-- args="$(find turtlebot_gazebo)/worlds/empty.world" respawn="false" output="screen" /> -->
+<!-- include our robots -->
+
+<node pkg="tf2_ros" type="static_transform_publisher" name="turtlebot_tf_1" args="-1 -1 0 2 0 0 world Robot1/odom" />
+<node pkg="tf2_ros" type="static_transform_publisher" name="turtlebot_tf_2" args="1 1 0 -2 0 0 world Robot2/odom" />
+<node pkg="tf2_ros" type="static_transform_publisher" name="turtlebot_tf_3" args="1 -1 0 -2 0 0 world Robot3/odom" />
+
+<include file="$(find sm3)/launch/3_robots.launch"/>
+</launch>
